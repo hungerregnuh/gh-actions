@@ -7,15 +7,14 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: 'Test install bun'
-      run: echo "Test worked!"
-      shell: bash
     - name: Installing bun v${{ inputs.bun-version }}
       id: install-bun
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: ${{ inputs.bun-version }}
+      working-directory: ${{ github.action_path }}
     - name: Install dependencies
       id: install-deps
       run: bun install
       shell: bash
+      working-directory: ${{ github.action_path }}
