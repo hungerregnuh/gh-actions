@@ -17,4 +17,5 @@ runs:
         bun-version: ${{ inputs.bun-version }}
     - name: Install dependencies
       id: install-deps
+      run: bun install
       shell: bash
