@@ -1,0 +1,27 @@
+name: 'Install uv and dependencies'
+description: 'Installs a specific version of uv and project dependencies'
+inputs:
+  uv-version:
+    description: 'The version of uv to install.'
+    required: true
+  workdir:
+    description: "Working directory relative to the caller's workspace"
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Setup python'
+      uses: actions/setup-python@v6
+      with:
+        python-version-file: '${{ inputs.workdir }}/.python-version'
+
+    - name: Install Uv
+      uses: astral-sh/setup-uv@v7
+      with:
+        version: ${{ inputs.uv-version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        cd "${{ inputs.workdir }}"
+        uv sync --locked --all-extras --dev
