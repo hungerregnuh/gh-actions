@@ -10,19 +10,19 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: ls
-      shell: bash
-    - name: Change working directory to ${{ inputs.workdir }}
-      run: cd ${{ inputs.workdir }}
-      shell: bash
-    - name: Working dir
-      run: pwd
-      shell: bash
     - name: Installing bun v${{ inputs.bun-version }}
       id: install-bun
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: ${{ inputs.bun-version }}
+    - name: Change working directory to ${{ inputs.workdir }}
+      run: cd ${{ inputs.workdir }}
+      shell: bash
+    - run: ls
+      shell: bash
+    - name: Working dir
+      run: pwd
+      shell: bash
     - name: Install dependencies
       id: install-deps
       shell: bash
