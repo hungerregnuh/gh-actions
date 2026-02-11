@@ -7,8 +7,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Change working directory to ${{ github.action_path }}
-      run: cd ${{ github.action_path }}
+    - name: Change working directory to ${{ github.workspace }}
+      run: cd ${{ github.workspace }}
+      shell: bash
+    - name: Working dir
+      run: pwd
       shell: bash
     - name: Installing bun v${{ inputs.bun-version }}
       id: install-bun
