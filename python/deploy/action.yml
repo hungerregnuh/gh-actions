@@ -1,0 +1,27 @@
+name: Install bun and dependencies
+description: Installs a specific version of bun and project dependencies
+inputs:
+  bun-version:
+    description: The version of bun to install.
+    required: true
+    default: 'latest'
+outputs:
+  bun-status:
+    description: Install bun status
+    value: ${{ steps.install-bun.outputs.report }}
+  install-dep-status:
+    description: Status of install, 0 if successful
+    value: ${{ steps.install-deps.outputs.report }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Use bun ${{ inputs.bun-version }}
+      id: install-bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: ${{ inputs.bun-version }}
+      run: echo "bun-status=$?" >> $GITHUB_OUTPUT
+    - name: Install dependencies
+      id: install-deps
+      shell: bash
+      run: bun install; echo "install-dep-status=$?" >> $GITHUB_OUTPUT
