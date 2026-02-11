@@ -4,11 +4,14 @@ inputs:
   bun-version:
     description: 'The version of bun to install.'
     required: true
+  workdir:
+    description: "Working directory relative to the caller's workspace"
+    required: true
 runs:
   using: 'composite'
   steps:
-    - name: Change working directory to ${{ github.workspace }}
-      run: cd ${{ github.workspace }}
+    - name: Change working directory to ${{ workdir }}
+      run: cd ${{ workdir }}
       shell: bash
     - name: Working dir
       run: pwd
