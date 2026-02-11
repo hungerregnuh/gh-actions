@@ -15,16 +15,9 @@ runs:
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: ${{ inputs.bun-version }}
-    - name: Change working directory to ${{ inputs.workdir }}
-      shell: bash
-      run: |
-        cd "${{ inputs.workdir }}"
-    - run: ls
-      shell: bash
-    - name: Working dir
-      run: pwd
-      shell: bash
     - name: Install dependencies
       id: install-deps
       shell: bash
-      run: bun install
+      run: |
+        cd "${{ inputs.workdir }}"
+        bun install
