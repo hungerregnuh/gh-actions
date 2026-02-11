@@ -16,8 +16,9 @@ runs:
       with:
         bun-version: ${{ inputs.bun-version }}
     - name: Change working directory to ${{ inputs.workdir }}
-      run: cd "${{ inputs.workdir }}"
       shell: bash
+      run: |
+        cd "${{ inputs.workdir }}"
     - run: ls
       shell: bash
     - name: Working dir
