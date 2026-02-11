@@ -1,8 +1,0 @@
-name: 'Install bun and dependencies'
-description: 'Installs a specific version of bun and project dependencies'
-runs:
-  using: 'composite'
-  steps:
-    - name: 'Test install bun'
-      run: echo "Test worked!"
-      shell: bash
