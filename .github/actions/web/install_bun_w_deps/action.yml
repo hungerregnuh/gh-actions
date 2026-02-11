@@ -10,6 +10,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - run: ls
+      shell: bash
     - name: Change working directory to ${{ inputs.workdir }}
       run: cd ${{ inputs.workdir }}
       shell: bash
