@@ -1,17 +1,17 @@
 name: 'Install bun and dependencies'
 description: 'Installs a specific version of bun and project dependencies'
-inputs:
-  bun-version:
-    description: 'The version of bun to install.'
-    required: true
-    default: 'latest'
-outputs:
-  bun-status:
-    description: Install bun status
-    value: ${{ steps.install-bun.outputs.report }}
-  install-dep-status:
-    description: Status of install, 0 if successful
-    value: ${{ steps.install-deps.outputs.report }}
+# inputs:
+#   bun-version:
+#     description: 'The version of bun to install.'
+#     required: true
+#     default: 'latest'
+# outputs:
+#   bun-status:
+#     description: Install bun status
+#     value: ${{ steps.install-bun.outputs.report }}
+#   install-dep-status:
+#     description: Status of install, 0 if successful
+#     value: ${{ steps.install-deps.outputs.report }}
 runs:
   using: 'composite'
   steps:
